@@ -23,7 +23,7 @@
 
                newImage.setAttribute('src',`https://flagsapi.com/${name}/shiny/64.png`)
 
-                // console.log(name)
+                
             }
             select1.appendChild(newOption1);
 
@@ -37,7 +37,7 @@
 
                 newImage.setAttribute('src',`https://flagsapi.com/${name}/shiny/64.png`)
 
-                // console.log(name)
+                
             }
 
             select2.appendChild(newOption2);
@@ -68,17 +68,29 @@ selectArray.forEach((select) => {
 })
 
 
+
 const input = document.querySelector(".input");
 const exchangeBtn = document.querySelector(".exchange-btn");
 
 exchangeBtn.addEventListener("click", async () => {
 
+    
     let inputVal = input.value
     console.log(typeof(inputVal))
     if(Number(inputVal) < 0 || inputVal == "") {
         alert("Please select a valid positive number")
         window.location.reload()
     }
+    
+    let parent = document.querySelector(".converted-money")
+
+    let resultHeading = document.createElement("h5")
+    resultHeading.style.color = "black"
+    resultHeading.innerText = "Loading..."
+    parent.appendChild(resultHeading)
+
+    
+
     const select1 = document.querySelector(".select1")
     const select2 = document.querySelector(".select2")
 
@@ -101,10 +113,9 @@ exchangeBtn.addEventListener("click", async () => {
 
 
 
-    let resultHeading = document.createElement("h2")
+    
     resultHeading.textContent = `${inputVal} ${select1.value} = ${result} ${select2.value}`
 
-    let parent = document.querySelector(".converted-money")
     let child = parent.firstChild
     if(child){
         parent.removeChild(child)
